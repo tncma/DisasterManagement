@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20131214162642) do
 
   create_table "districts", force: true do |t|
     t.string   "name"
+    t.decimal  "lat",        precision: 10, scale: 6, default: 0.0
+    t.decimal  "lng",        precision: 10, scale: 6, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -15,7 +15,8 @@ namespace :bootstrap do
 		District.destroy_all
 		CSV.open(File.expand_path('../data/district.csv', __FILE__), "r", options) do |csv|
 			csv.find_all do |row|
-				District.create(:name => row[0])
+				lat, lng = Geocoder.coordinates("#{row[0]}")
+				District.create(:name => row[0], :lat => lat, :lng => lng)
 			end
 		end
 	end

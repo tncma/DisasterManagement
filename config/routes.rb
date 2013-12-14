@@ -3,6 +3,8 @@ DisasterManagement::Application.routes.draw do
   ActiveAdmin.routes(self)
   get "management/index"
   get '/resources/:disaster/:district' => 'resources#for_disaster_and_district'
+  get '/availability/:resource/:district' => 'resources#availability'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
