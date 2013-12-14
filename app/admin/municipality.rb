@@ -1,3 +1,3 @@
-ActiveAdmin.register Muncipality do
+ActiveAdmin.register Municipality do
   permit_params :name, :lat, :lng
 end

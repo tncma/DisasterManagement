@@ -1,3 +1,3 @@
-class Resource < ActiveRecord::Base
+class Disaster < ActiveRecord::Base
 	validates :name, presence: true
 end

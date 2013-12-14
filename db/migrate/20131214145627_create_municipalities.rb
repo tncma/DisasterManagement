@@ -1,6 +1,6 @@
-class CreateMuncipalities < ActiveRecord::Migration
+class CreateMunicipalities < ActiveRecord::Migration
   def change
-    create_table :muncipalities do |t|
+    create_table :municipalities do |t|
       t.string :name
       t.decimal :lat, :precision => 10, :scale => 6, :default => 0
       t.decimal :lng, :precision => 10, :scale => 6, :default => 0

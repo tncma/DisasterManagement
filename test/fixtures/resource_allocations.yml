@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  disaster_id: 1
+  resource_id: 1
+  quantity: 1
+
+two:
+  disaster_id: 1
+  resource_id: 1
+  quantity: 1
