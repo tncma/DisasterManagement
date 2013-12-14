@@ -12,6 +12,7 @@ namespace :bootstrap do
 
 	desc "Import districts"
 	task :district => :environment do
+		District.destroy_all
 		CSV.open(File.expand_path('../data/district.csv', __FILE__), "r", options) do |csv|
 			csv.find_all do |row|
 				District.create(:name => row[0])
@@ -21,6 +22,7 @@ namespace :bootstrap do
 
 	desc "Import Municipalities"
 	task :municipalities => :environment do
+		Municipality.destroy_all
 		CSV.open(File.expand_path('../data/municipalities.csv', __FILE__), "r", options) do |csv|
 			csv.find_all do |row|
 				lat, lng = Geocoder.coordinates("#{row[0]},#{row[1]}")
@@ -31,6 +33,7 @@ namespace :bootstrap do
 
 	desc "Import Disaster"
 	task :disaster => :environment do
+		Disaster.destroy_all
 		CSV.open(File.expand_path('../data/disaster.csv', __FILE__), "r", options) do |csv|
 			csv.find_all do |row|
 				Disaster.create(:name => row[0])
@@ -40,6 +43,7 @@ namespace :bootstrap do
 
 	desc "Import Resources"
 	task :resources => :environment do
+		Resource.destroy_all
 		CSV.open(File.expand_path('../data/resources.csv', __FILE__), "r", options) do |csv|
 			csv.find_all do |row|
 				Resource.create(:name => row[0])
@@ -72,6 +76,7 @@ namespace :bootstrap do
 		Rake::Task['bootstrap:district'].execute
 		Rake::Task['bootstrap:municipalities'].execute
 		Rake::Task['bootstrap:disaster'].execute
-		Rake::Task['bootstrap:resources'].execute
+		Rake::Task['bootstrap:allocation'].execute
+		Rake::Task['bootstrap:availability'].execute
 	end
 end
