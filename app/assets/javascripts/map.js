@@ -9,7 +9,7 @@ var renderMap = function(data) {
 			$("<div />").html("Municipality: " + municipality.municipality).appendTo(container);
 			$("<div />").html("District: " + municipality.district).appendTo(container);
 			$("<div />").html("Availability: " + municipality.availability).appendTo(container);
-			$("<div />").html("Distance: " + municipality.distance).appendTo(container);
+			$("<div />").html("Distance: " + municipality.distance + "kms").appendTo(container);
 			L.marker([municipality.lat, municipality.lng]).addTo(map).bindPopup(container.html()).openPopup();
 		}
 	})
