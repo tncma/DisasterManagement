@@ -23,7 +23,8 @@ namespace :bootstrap do
 	task :municipalities => :environment do
 		CSV.open(File.expand_path('../data/municipalities.csv', __FILE__), "r", options) do |csv|
 			csv.find_all do |row|
-				Municipality.create(:name => row[0], :district => District.find_by_name(row[1]))
+				lat, lng = Geocoder.coordinates("#{row[0]},#{row[1]}")
+				Municipality.create(:name => row[0], :district => District.find_by_name(row[1]), :lat => lat, :lng => lng)
 			end
 		end
 	end
