@@ -15,13 +15,6 @@
       <span style=" font-weight:bold; font-size: 14pt;">District Suspected</span>
     </div>
     <div class="col-md-6">
-      <!--<div class="btn-group">-->
-        <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">-->
-          <!--DISTRICT <span class="caret"></span>-->
-        <!--</button>-->
-        <!--<ul id="district_id" class="dropdown-menu" role="menu">-->
-        <!--</ul>-->
-      <!--</div>-->
       <select id="district_id"></select>
     </div>
   </div>
@@ -35,13 +28,6 @@
       <span style=" font-weight:bold; font-size: 14pt;">Category</span>
     </div>
     <div class="col-md-6">
-      <!--<div class="btn-group">-->
-        <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">CATEGORY-->
-          <!--<span class="caret"></span>-->
-        <!--</button>-->
-        <!--<ul class="dropdown-menu" role="menu">-->
-        <!--</ul>-->
-      <!--</div>-->
       <select id="disaster_id"></select>
     </div>
   </div>
@@ -50,55 +36,47 @@
     <div class="col-md-12" style="padding: 3px;"></div>
   </div>
 
-  <div class="row">
+  <div class="row" id="resource_id" style="visibility: hidden;">
     <div class="col-md-12">
-      <table id="resource_id" class="table table-bordered" style="visibility: hidden;">
+      <table class="table table-bordered">
         <thead>
         <tr>
-          <th>S.No</th>
           <th>Resource</th>
           <th>Needed</th>
-          <th>Current Availability</th>
-          <th>No. to borrow</th>
-          <th>Addition Info</th>
+          <th>In-House Availability</th>
+          <th>To Source</th>
+          <th>Sourcing Info.</th>
         </tr>
         </thead>
         <tbody id="availabilit_table_id">
-        <tr>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-        </tr>
         </tbody>
       </table>
 
     </div>
   </div>
 
-  <div class="row">
+  <div class='row' id="item_row_id" style="visibility: hidden;">
+    <div class="col-md-6">
+      <span style=" font-weight:bold; font-size: 14pt;">Resource to be Sourced : </span>
+      <span id="selected_resource_id" style=" font-weight:bold; font-size: 14pt;"></span>
+    </div>
+  </div>
+
+  <div class="row" id="item_needed_table" style="visibility: hidden;">
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th>S.No</th>
-          <th>Municipalities</th>
-          <th>No.</th>
-          <th>Distance</th>
-          <th>Time Taken</th>
-          <th>Allocated No.</th>
+          <th>District</th>
+          <th>Municipality</th>
+          <th>Availability</th>
+          <th id="distance_id"></th>
+          <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="item_details_id">
         <tr>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
-          <td>Sample</td>
+
         </tr>
         </tbody>
       </table>
