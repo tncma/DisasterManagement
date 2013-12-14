@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  gender: MyString
+  phone_number: MyString
+  pulse: 1
+  conscious: false
+
+two:
+  name: MyString
+  gender: MyString
+  phone_number: MyString
+  pulse: 1
+  conscious: false
