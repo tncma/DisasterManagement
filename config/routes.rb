@@ -2,6 +2,7 @@ DisasterManagement::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get "management/index"
+  get "management/map"
   get '/resources/:disaster/:district' => 'resources#for_disaster_and_district'
   get '/availability/:resource/:district' => 'resources#availability'
 

@@ -19,9 +19,9 @@ class ResourcesController < ApplicationController
 		result = resource_availablity.map do |availability|
 			municipality = availability.municipality	
 			distance = Geocoder::Calculations.distance_between([district.lat, district.lng], [municipality.lat, municipality.lng], :units => :km)
-			{ :municipality => municipality.name, :district => municipality.district.name, :availability => availability.availability, :distance => distance }
+			{ :municipality => municipality.name, :district => municipality.district.name, :availability => availability.availability, :distance => distance, :lat => municipality.lat, :lng => municipality.lng }
 		end
 		
-		render :json => result
+		render :json => {:availability => result, :district => {:name => district.name, :lat => district.lat, :lng => district.lng }}
 	end
 end
