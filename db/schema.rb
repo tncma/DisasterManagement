@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20131214162642) do
   create_table "resource_allocations", force: true do |t|
     t.integer  "disaster_id"
     t.integer  "resource_id"
+    t.integer  "district_id"
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
