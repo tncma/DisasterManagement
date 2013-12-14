@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ERTriage::Application.config.secret_key_base = 'd2fb50d076d2f9eaebf05c4dbb3c53aaaa8a0b41d37a8368fa6e62746ee92fc306863bf624f74b217710509a98e82806520d8adb214b7eb39906b65d235de510'
+DisasterManagement::Application.config.secret_key_base = 'd2fb50d076d2f9eaebf05c4dbb3c53aaaa8a0b41d37a8368fa6e62746ee92fc306863bf624f74b217710509a98e82806520d8adb214b7eb39906b65d235de510'

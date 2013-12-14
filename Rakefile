@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ERTriage::Application.load_tasks
+DisasterManagement::Application.load_tasks
