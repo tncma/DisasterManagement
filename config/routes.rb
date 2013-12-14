@@ -1,6 +1,8 @@
 DisasterManagement::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  get '/resources/:disaster/:district' => 'resources#for_disaster_and_district'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
