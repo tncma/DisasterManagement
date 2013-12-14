@@ -5,8 +5,12 @@ var renderMap = function(data) {
 	}).addTo(map);
 	$.each(data.availability, function(index, municipality) {
 		if (municipality.lat && municipality.lng) {
-			var message = municipality.municipality + "," + municipality.district + "( " + municipality.availability + " )";
-			L.marker([municipality.lat, municipality.lng]).addTo(map).bindPopup(message).openPopup();
+			var container = $("<div />");
+			$("<div />").html("Municipality: " + municipality.municipality).appendTo(container);
+			$("<div />").html("District: " + municipality.district).appendTo(container);
+			$("<div />").html("Availability: " + municipality.availability).appendTo(container);
+			$("<div />").html("Distance: " + municipality.distance).appendTo(container);
+			L.marker([municipality.lat, municipality.lng]).addTo(map).bindPopup(container.html()).openPopup();
 		}
 	})
 };
