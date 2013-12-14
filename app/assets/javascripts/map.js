@@ -1,13 +1,19 @@
-$(function() {
-	$.ajax(
-	// create a map in the "map" div, set the view to a given place and zoom
-	var map = L.map('map').setView([51.505, -0.09], 13);
-
-	// add an OpenStreetMap tile layer
+var renderMap = function(data) {
+	var map = L.map('map').setView([data.district.lat, data.district.lng], 9);
 	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
+	$.each(data.availability, function(index, municipality) {
+		if (municipality.lat && municipality.lng) {
+			var message = municipality.municipality + "," + municipality.district + "( " + municipality.availability + " )";
+			L.marker([municipality.lat, municipality.lng]).addTo(map).bindPopup(message).openPopup();
+		}
+	})
+};
 
-	// add a marker in the given location, attach some popup content to it and open the popup
-	L.marker([51.5, -0.09]).addTo(map).bindPopup('A pretty CSS3 popup. <br> Easily customizable.').openPopup();
+$(function() {
+	$.ajax({
+		url: "/availability/Blankets/Kancheepuram",
+		success: renderMap
+	});
 });
