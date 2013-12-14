@@ -47,6 +47,26 @@ namespace :bootstrap do
 		end
 	end
 
+	desc "Import Resource Allocation"
+	task :allocation => :environment do
+		ResourceAllocation.destroy_all
+		CSV.open(File.expand_path('../data/resource_allocation.csv', __FILE__), "r", options) do |csv|
+			csv.find_all do |row|
+				ResourceAllocation.create(:disaster => Disaster.find_by_name(row[0]), :resource => Resource.find_by_name(row[1]), :district => District.find_by_name(row[2]), :quantity => row[3])
+			end
+		end
+	end
+
+	desc "Import Resource Availability"
+	task :availability => :environment do
+		ResourceAvailabilty.destroy_all
+		CSV.open(File.expand_path('../data/resource_availability.csv', __FILE__), "r", options) do |csv|
+			csv.find_all do |row|
+				ResourceAvailabilty.create(:municipality => Municipality.find_by_name(row[0]), :resource => Resource.find_by_name(row[1]), :availability => row[2])
+			end
+		end
+	end
+
 	desc "Import all"
 	task :all => :environment do
 		Rake::Task['bootstrap:district'].execute

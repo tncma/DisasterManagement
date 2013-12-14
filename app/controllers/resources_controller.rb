@@ -1,16 +1,14 @@
 class ResourcesController < ApplicationController
 	def for_disaster_and_district
-		resources = Resource.includes(:resource_allocation, :resource_availabilty)
-		.joins(resource_allocation: [:disaster, :district], resource_availabilty: [municipality: [:district]])
-		.where("disasters.name" => params[:disaster], "districts.name" => params[:district])
-		
-		result = resources.map do |resource|
-			{ 
-				:name => resource.name,
-				:quantity => resource.resource_allocation.inject(0){|quantity, resource_allocation| quantity + resource_allocation.quantity },
-				:available => resource.resource_availabilty.inject(0) {|available, resource_availabilty| available + resource_availabilty.availability }
-			}
+		resource_allocations = ResourceAllocation.includes(:resource).joins(:disaster, :district, :resource).where("disasters.name" => "Cyclone", "districts.name" => "Kancheepuram")
+		resource_availablity = ResourceAvailabilty.includes(:resource).joins(municipality: [:district], resource: []).where("districts.name" => "Kancheepuram").group_by { |x| x.resource.name }
+
+		result = resource_allocations.map do |allocation|
+			resource_name = allocation.resource.name
+			availability = resource_availablity[resource_name].inject(0) {|sum, availability| sum + availability.availability }
+			{name: resource_name, availability: availability, quantity: allocation.quantity }
 		end
-		render json: result.uniq
+
+		render :json => result
 	end
 end
