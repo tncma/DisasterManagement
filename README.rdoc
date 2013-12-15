@@ -1,28 +1,7 @@
-== README
+==Disaster Management Planner
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This can help in planning logistic and resources for a district affected with natural calamity like (Cyclone, Earthquake, Flooding...), this app gets real time resource inventory data for a district / municipality.
 
-Things you may want to cover:
+* Plan resources / services for the area concerned based on the disaster type and inventory available
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Allocate resources from nearby municipalities to the area of disaster alert. 
