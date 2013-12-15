@@ -107,7 +107,6 @@ var getDetailOfResource = function(e) {
             var row = '<tr><td>' + district + '</td><td>' + municipality + '</td><td>' + available + '</td><td>' + distance + '</td><td>' + '<input type="text"/>' + '</td></tr>'
             rows.push(row);
         }
-        console.log(resourcesNeeded[parseInt(e.id.substring(4))].excessNeeded);
         $('#total_qty_needed').empty();
         $('#total_qty_needed').text(resourcesNeeded[parseInt(e.id.substring(4))].excessNeeded);
         $('#distance_id').empty();
@@ -116,12 +115,13 @@ var getDetailOfResource = function(e) {
         $('#item_details_id').append(rows.join(' '));
         $('#item_needed_table').css('visibility', 'visible');
     });
+
     $('#item_row_id').css('visibility', 'visible');
 }
 
 
 var renderMap = function(data) {
-    var map = L.map('map').setView([data.district.lat, data.district.lng], 9);
+    var map = L.map('map').setView([data.district.lat, data.district.lng], 8);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);

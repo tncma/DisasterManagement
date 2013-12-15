@@ -1,38 +1,29 @@
+<header class="navbar navbar-inverse bs-docs-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <div class="navbar-brand">Disaster Management Planner</div>
+    </div>
+  </div>
+</header>
+
 <div class="container">
-  <div class="jumbotron">
-    <h1>Disaster Management
-      <small>Precaution Advisor</small>
-    </h1>
-  </div>
   <div class="row">
-    <div class="col-md-6">
-      <span style=" font-weight:bold; font-size: 14pt;">District Suspected</span>
-    </div>
-    <div class="col-md-6">
-      <select id="district_id"></select>
-    </div>
-  </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon">District</span>
+        <select class="form-control" id="district_id"></select>
+      </div>
 
-  <div class="row">
-    <div class="col-md-12" style="padding: 3px;"></div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <span style=" font-weight:bold; font-size: 14pt;">Category</span>
+      <br />
+      
+      <div class="input-group">
+        <span class="input-group-addon">Category</span>
+        <select class="form-control" id="disaster_id"></select>
+      </div>
     </div>
-    <div class="col-md-6">
-      <select id="disaster_id" data-bind="click: getDistricts"></select>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12" style="padding: 3px;"></div>
-  </div>
-
-  <div class="row" id="resource_id" style="visibility: hidden;">
-    <div class="col-md-12">
-      <table class="table table-bordered">
+    <div class="col-md-8" id="resource_id" style="visibility: hidden;">
+      <table class="table">
         <thead>
         <tr>
           <th>Resource</th>
@@ -45,26 +36,27 @@
         <tbody id="availabilit_table_id">
         </tbody>
       </table>
-
     </div>
   </div>
 
   <div class='row' id="item_row_id" style="visibility: hidden;">
-    <div class="col-md-6">
+    <div class="col-md-10">
       <span style=" font-weight:bold; font-size: 14pt;">Resource to be Sourced : </span>
       <span id="selected_resource_id" style=" font-weight:bold; font-size: 14pt;"></span>
+    </div>
+    <div class="col-md-4" id="item_needed_qty" style="visibility: hidden;">
+      <h2><span>Total Needed : </span></h2>
+      <h2><span id="total_qty_needed" class="label label-success"></span></h2>
     </div>
   </div>
 
   <div class="row" id="map_id" style="visibility: hidden; padding: 10px;">
-    <div class="col-md-12">
-      <div id="map"></div>
-    </div>
+    <div id="map" class="col-md-12"></div>
   </div>
 
-  <div class="row" id="item_needed_table" style="visibility: hidden;">
-    <div class="col-md-10">
-      <table class="table table-bordered">
+  <div class="row" id="item_needed_table" style="visibility: hidden; padding: 10px;">
+    <div class="col-md-8">
+      <table class="table">
         <thead>
         <tr>
           <th>District</th>
@@ -79,10 +71,6 @@
         </tr>
         </tbody>
       </table>
-    </div>
-    <div class="col-md-2">
-      <h2><span>Total Needed : </span></h2>
-      <h2><span id="total_qty_needed" class="label label-success"></span></h2>
     </div>
   </div>
 
