@@ -19,19 +19,6 @@ $(function() {
 var districtChosen;
 var resourcesNeeded ;
 
-var getDistrict = function() {
-    $.get('/admin/districts.json', function(data) {
-        var districts = [];
-        sortByKey(data, 'name');
-        $.each(data, function(i, district) {
-
-            districts.push('<option>'+ district.name + '</option>');
-
-        });
-        $("#district_id").append( districts.join('') );
-    });
-}
-
 var sortByKey = function (array, key) {
     return array.sort(function(a, b) {
         var x = a[key];
@@ -44,6 +31,19 @@ var sortByKey = function (array, key) {
         }
 
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
+var getDistrict = function() {
+    $.get('/admin/districts.json', function(data) {
+        var districts = [];
+        sortByKey(data, 'name');
+        $.each(data, function(i, district) {
+
+            districts.push('<option>'+ district.name + '</option>');
+
+        });
+        $("#district_id").append( districts.join('') );
     });
 }
 
@@ -92,6 +92,7 @@ var getDetailOfResource = function(e) {
 
     $.get('/availability/' + resourcesNeeded[parseInt(e.id.substring(4))].name + '/' + districtChosen, function(data) {
         var rows = [];
+        renderMap(data);
         data = data['availability'];
         for(var i=0; i<data.length; i++) {
             var district = data[i].district;
@@ -106,33 +107,35 @@ var getDetailOfResource = function(e) {
             var row = '<tr><td>' + district + '</td><td>' + municipality + '</td><td>' + available + '</td><td>' + distance + '</td><td>' + '<input type="text"/>' + '</td></tr>'
             rows.push(row);
         }
+        console.log(resourcesNeeded[parseInt(e.id.substring(4))].excessNeeded);
+        $('#total_qty_needed').empty();
+        $('#total_qty_needed').text(resourcesNeeded[parseInt(e.id.substring(4))].excessNeeded);
         $('#distance_id').empty();
         $('#distance_id').append('Distance From ' + districtChosen);
         $('#item_details_id').empty();
         $('#item_details_id').append(rows.join(' '));
         $('#item_needed_table').css('visibility', 'visible');
     });
-
     $('#item_row_id').css('visibility', 'visible');
 }
 
-var District = function(data) {
-    console.log(data);
-    var self = this;
-    self.name = data.name;
-    self.quantity = data.quantity;
-    self.availability = data.availability;
-    self.borrow = parseInt(data.quantity) - parseInt(data.availability);
-}
 
-var DistrictDetails = function(data) {
-    var self = this;
-    self.districts = ko.observableArray([]);
-    for(var i=0; i<data.length; i++){
-        self.districts.push(new District(data[i]));
-    }
+var renderMap = function(data) {
+    var map = L.map('map').setView([data.district.lat, data.district.lng], 9);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    $.each(data.availability, function(index, municipality) {
+        if (municipality.lat && municipality.lng) {
+            var container = $("<div />");
+            $("<div />").html("Municipality: " + municipality.municipality).appendTo(container);
+            $("<div />").html("District: " + municipality.district).appendTo(container);
+            $("<div />").html("Availability: " + municipality.availability).appendTo(container);
+            $("<div />").html("Distance: " + municipality.distance + "kms").appendTo(container);
+            L.marker([municipality.lat, municipality.lng]).addTo(map).bindPopup(container.html()).openPopup();
+        }
+    });
 
-}
-
-
+    $('#map_id').css('visibility', 'visible');
+};
 

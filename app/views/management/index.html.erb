@@ -1,10 +1,4 @@
 <div class="container">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Messages</a></li>
-  </ul>
-
   <div class="jumbotron">
     <h1>Disaster Management
       <small>Precaution Advisor</small>
@@ -28,7 +22,7 @@
       <span style=" font-weight:bold; font-size: 14pt;">Category</span>
     </div>
     <div class="col-md-6">
-      <select id="disaster_id"></select>
+      <select id="disaster_id" data-bind="click: getDistricts"></select>
     </div>
   </div>
 
@@ -62,8 +56,14 @@
     </div>
   </div>
 
-  <div class="row" id="item_needed_table" style="visibility: hidden;">
+  <div class="row" id="map_id" style="visibility: hidden; padding: 10px;">
     <div class="col-md-12">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <div class="row" id="item_needed_table" style="visibility: hidden;">
+    <div class="col-md-10">
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -76,11 +76,14 @@
         </thead>
         <tbody id="item_details_id">
         <tr>
-
         </tr>
         </tbody>
       </table>
-
+    </div>
+    <div class="col-md-2">
+      <h2><span>Total Needed : </span></h2>
+      <h2><span id="total_qty_needed" class="label label-success"></span></h2>
     </div>
   </div>
+
 </div>
