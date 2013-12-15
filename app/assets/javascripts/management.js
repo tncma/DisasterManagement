@@ -17,7 +17,7 @@ $(function() {
 });
 
 var districtChosen;
-var resourcesNeeded ;
+var resourcesNeeded, quantityNeeded, quantityAskedFor = [];
 
 var sortByKey = function (array, key) {
     return array.sort(function(a, b) {
@@ -104,9 +104,10 @@ var getDetailOfResource = function(e) {
             }else {
                 distance = parseInt('0');
             }
-            var row = '<tr><td>' + district + '</td><td>' + municipality + '</td><td>' + available + '</td><td>' + distance + '</td><td>' + '<input type="text"/>' + '</td></tr>'
+            var row = '<tr><td>' + district + '</td><td>' + municipality + '</td><td>' + available + '</td><td>' + distance + '</td><td>' + '<input type="text" id="qty_' + i + '" onchange="addQty(this);"></input>' + '</td></tr>'
             rows.push(row);
         }
+        quantityNeeded = resourcesNeeded[parseInt(e.id.substring(4))].excessNeeded;
         $('#total_qty_needed').empty();
         $('#total_qty_needed').text(resourcesNeeded[parseInt(e.id.substring(4))].excessNeeded);
         $('#distance_id').empty();
@@ -117,6 +118,34 @@ var getDetailOfResource = function(e) {
     });
 
     $('#item_row_id').css('visibility', 'visible');
+}
+
+var addQty = function(element) {
+    var id = '#' + element.id;
+    var qtyAsked = $(id).val();
+    quantityAskedFor[parseInt(element.id.substring(4))] = qtyAsked;
+    var remainingNeeded = calculateNeededQty();
+    if(remainingNeeded <= 0) {
+        $('#remaining_needed').removeClass('label-danger');
+        $('#remaining_needed').addClass('label-success');
+    }else{
+        $('#remaining_needed').removeClass('label-success');
+        $('#remaining_needed').addClass('label-danger');
+    }
+    $('#remaining_needed').empty();
+    $('#remaining_needed').text(remainingNeeded);
+}
+
+var calculateNeededQty = function() {
+    var totalQtyAskedSoFar = 0;
+    for(var i=0; i<quantityAskedFor.length; i++){
+        if(isNaN(parseInt(quantityAskedFor[i]))){
+            quantityAskedFor[i] = 0;
+        }else{
+            totalQtyAskedSoFar += parseInt(quantityAskedFor[i]);
+        }
+    }
+    return parseInt(quantityNeeded) - totalQtyAskedSoFar;
 }
 
 

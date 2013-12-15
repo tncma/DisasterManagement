@@ -44,10 +44,6 @@
       <span style=" font-weight:bold; font-size: 14pt;">Resource to be Sourced : </span>
       <span id="selected_resource_id" style=" font-weight:bold; font-size: 14pt;"></span>
     </div>
-    <div class="col-md-4" id="item_needed_qty" style="visibility: hidden;">
-      <h2><span>Total Needed : </span></h2>
-      <h2><span id="total_qty_needed" class="label label-success"></span></h2>
-    </div>
   </div>
 
   <div class="row" id="map_id" style="visibility: hidden; padding: 10px;">
@@ -71,6 +67,13 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div class="col-md-2">
+      <h3><span>Total Needed : </span></h3>
+      <h2><span id="total_qty_needed" class="label label-success"></span></h2>
+
+      <h3><span>Still Needed: </span></h3>
+      <h2><span id="remaining_needed" class="label label-danger"></span></h2>
     </div>
   </div>
 
