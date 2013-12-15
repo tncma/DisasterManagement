@@ -89,7 +89,7 @@ var getAvailabilityFor = function(district, disaster) {
 
 var getDetailOfResource = function(e) {
     $('#selected_resource_id').text(resourcesNeeded[parseInt(e.id.substring(4))].name);
-
+    clearField();
     $.get('/availability/' + resourcesNeeded[parseInt(e.id.substring(4))].name + '/' + districtChosen, function(data) {
         var rows = [];
         renderMap(data);
@@ -134,6 +134,11 @@ var addQty = function(element) {
     }
     $('#remaining_needed').empty();
     $('#remaining_needed').text(remainingNeeded);
+}
+
+var clearField = function() {
+    quantityAskedFor = [];
+    $('#remaining_needed').empty();
 }
 
 var calculateNeededQty = function() {
