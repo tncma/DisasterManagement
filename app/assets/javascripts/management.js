@@ -119,9 +119,13 @@ var getDetailOfResource = function(e) {
     $('#item_row_id').css('visibility', 'visible');
 }
 
+var map;
 
 var renderMap = function(data) {
-    var map = L.map('map').setView([data.district.lat, data.district.lng], 8);
+    if (map) {
+        map.remove();
+    }
+    map = L.map('map').setView([data.district.lat, data.district.lng], 8);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
